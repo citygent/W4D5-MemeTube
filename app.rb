@@ -34,11 +34,18 @@ end
 post '/videos' do
   sql = "INSERT INTO videos(title, description, url, date_added, views) VALUES ('#{params['title']}','#{params['description']}','#{params['url']}','NOW','0') returning *"
   video = @db.exec(sql).first['id']
-  binding.pry
   redirect to "/videos/#{video['id']}"
 end
 
 #SHOW - get, a showcase video PAGE with edit link and delete functionality
+get '/videos/:id' do
+  sql = "SELECT * FROM videos WHERE id = #{params[:id]}"
+  @video = @db.exec(sql).first
+  # binding.pry
+  @header = @video['title']
+  erb :show
+end
+
 #EDIT - route within show page? KISS: get PAGE with route to UPDATE
 #UPDATE - post, route to change fields in db
 #DELETE - post, route thaat deletes rows in db
