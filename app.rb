@@ -18,13 +18,26 @@ end
 
 #INDEX - get, list all videos PAGE
 get '/videos' do
+  @header = 'Vidz'
   sql = 'SELECT * FROM videos'
   @videos = @db.exec(sql)
   erb :index
 end
 
 #NEW - get, returns a form PAGE
+get '/videos/new' do
+  @header = 'Submit Vidz'
+  erb :new
+end
+
 #CREATE - post, route to create vid on database, redirects to show
+post '/videos' do
+  sql = "INSERT INTO videos(title, description, url, date_added, views) VALUES ('#{params['title']}','#{params['description']}','#{params['url']}','NOW','0') returning *"
+  video = @db.exec(sql).first['id']
+  binding.pry
+  redirect to "/videos/#{video['id']}"
+end
+
 #SHOW - get, a showcase video PAGE with edit link and delete functionality
 #EDIT - route within show page? KISS: get PAGE with route to UPDATE
 #UPDATE - post, route to change fields in db
