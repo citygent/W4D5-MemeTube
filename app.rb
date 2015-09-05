@@ -13,10 +13,16 @@ end
 
 #Home/Lander
 get '/' do
-  redirect '/index'
+  redirect '/videos'
 end
 
 #INDEX - get, list all videos PAGE
+get '/videos' do
+  sql = 'SELECT * FROM videos'
+  @videos = @db.exec(sql)
+  erb :index
+end
+
 #NEW - get, returns a form PAGE
 #CREATE - post, route to create vid on database, redirects to show
 #SHOW - get, a showcase video PAGE with edit link and delete functionality
