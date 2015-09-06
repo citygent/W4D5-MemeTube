@@ -2,3 +2,7 @@
 <p>Added: <%= @video['date_added'] %></p>
 <p>Views: <%= @video['views'] %></p>
 <p><%= @video['description']%></p>
+
+<form action="/videos/<%= @video['id'] %>/edit" method="get">
+  <button>Edit</button>
+</form>

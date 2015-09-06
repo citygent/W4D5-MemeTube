@@ -1,0 +1,12 @@
+<iframe id="player" type="text/html" width="640" height="390" src="https://www.youtube.com/embed/<%= @video['url'] %>" frameborder="0"></iframe>
+
+<p>Added: <%= @video['date_added'] %></p>
+<p>Views: <%= @video['views'] %></p>
+
+<form action="/videos/<%= @video['id'] %>" method="post">
+  <label for="title">Title</label>
+  <input type="text" name="title" value="<%= @video['title']%>">
+  <label for="description">Description</label>
+  <input type="text" name="description" value="<%= @video['description']%>">
+  <button>Make Changes</button>
+</form>

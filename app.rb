@@ -47,6 +47,18 @@ get '/videos/:id' do
 end
 
 #EDIT - route within show page? KISS: get PAGE with route to UPDATE
-#UPDATE - post, route to change fields in db
-#DELETE - post, route thaat deletes rows in db
+get '/videos/:id/edit' do
+  sql = "SELECT * FROM videos WHERE id = #{params['id']}"
+  @video = @db.exec(sql).first
+  @header = "Edit Entry #{@video['title']}"
+  erb :edit
+end
 
+#UPDATE - post, route to change fields in db
+post '/videos/:id' do
+  sql = "UPDATE videos SET title = '#{params['title']}', description = '#{params['description']}' WHERE id = #{params['id']}"
+  @db.exec(sql)
+  redirect to "videos/#{params['id']}"
+end
+
+#DELETE - post, route that deletes rows in db
