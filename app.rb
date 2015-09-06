@@ -39,7 +39,7 @@ end
 
 #SHOW - get, a showcase video PAGE with edit link and delete functionality
 get '/videos/:id' do
-  sql = "SELECT * FROM videos WHERE id = #{params[:id]}"
+  sql = "SELECT * FROM videos WHERE id = #{params[:id]}; UPDATE videos SET views = views + 1 WHERE id = #{params[:id]} returning *"
   @video = @db.exec(sql).first
   # binding.pry
   @header = @video['title']
