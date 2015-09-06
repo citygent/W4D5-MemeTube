@@ -62,3 +62,8 @@ post '/videos/:id' do
 end
 
 #DELETE - post, route that deletes rows in db
+post '/videos/:id/delete' do
+  sql = "DELETE FROM videos WHERE id = #{params['id']}"
+  @db.exec(sql)
+  redirect to '/videos'
+end
