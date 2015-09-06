@@ -19,7 +19,7 @@ end
 #INDEX - get, list all videos PAGE
 get '/videos' do
   @header = 'All Videos'
-  sql = 'SELECT * FROM videos'
+  sql = 'SELECT * FROM videos ORDER BY id DESC'
   @videos = @db.exec(sql)
   erb :index
 end
@@ -33,8 +33,8 @@ end
 #CREATE - post, route to create vid on database, redirects to show
 post '/videos' do
   sql = "INSERT INTO videos(title, description, url, date_added, views) VALUES ('#{params['title']}','#{params['description']}','#{params['url']}','NOW','0') returning *"
-  video = @db.exec(sql).first
-  redirect to "/videos/#{video['id']}"
+  @video = @db.exec(sql).first
+  redirect to "/videos/#{@video['id']}"
 end
 
 #SHOW - get, a showcase video PAGE with edit link and delete functionality
@@ -66,4 +66,12 @@ post '/videos/:id/delete' do
   sql = "DELETE FROM videos WHERE id = #{params['id']}"
   @db.exec(sql)
   redirect to '/videos'
+end
+
+#mostviewed - same as index but with different SQL? 
+get '/mostviewed' do
+  @header = 'All Videos'
+  sql = 'SELECT * FROM videos ORDER BY views DESC'
+  @videos = @db.exec(sql)
+  erb :index
 end

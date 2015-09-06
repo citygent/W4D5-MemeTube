@@ -5,5 +5,7 @@ CREATE TABLE videos (
   description varchar(2000),
   url varchar(200) UNIQUE NOT NULL,
   date_added date,
-  views int2 default 0
+  views int2 default 0,
+  category varchar(50)
 );
+
