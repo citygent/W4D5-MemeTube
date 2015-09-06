@@ -18,7 +18,7 @@ end
 
 #INDEX - get, list all videos PAGE
 get '/videos' do
-  @header = 'Vidz'
+  @header = 'All Videos'
   sql = 'SELECT * FROM videos'
   @videos = @db.exec(sql)
   erb :index
@@ -26,7 +26,7 @@ end
 
 #NEW - get, returns a form PAGE
 get '/videos/new' do
-  @header = 'Submit Vidz'
+  @header = 'Submit a Video'
   erb :new
 end
 
@@ -50,7 +50,7 @@ end
 get '/videos/:id/edit' do
   sql = "SELECT * FROM videos WHERE id = #{params['id']}"
   @video = @db.exec(sql).first
-  @header = "Edit Entry #{@video['title']}"
+  @header = "Edit Entry: '#{@video['title']}'"
   erb :edit
 end
 

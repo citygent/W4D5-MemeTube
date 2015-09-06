@@ -1,8 +1,45 @@
+@import url(http://fonts.googleapis.com/css?family=Varela|Limelight|Merriweather&v2);
+html {
+  height: 100%;
+}
+header {
+  margin-top: 40px;
+  font-family: 'Limelight', cursive;
+  font-size: 32px;
+  text-align: center;
+}
+header h1 {
+  color: black;
+  display: inline; 
+  vertical-align: 60%;
+  padding: 30px;
+}
+header img {
+  max-height: 130px;
+  margin: 0 auto;
+}
 body {
-  color: white;
-
-  background: -webkit-linear-gradient(hotpink, black); /* For Safari 5.1 to 6.0 */
-  background: -o-linear-gradient(hotpink, black); /* For Opera 11.1 to 12.0 */
-  background: -moz-linear-gradient(hotpink, black); /* For Firefox 3.6 to 15 */
-  background: linear-gradient(hotpink, black); /* Standard syntax */
+  color: goldenrod;
+  background: linear-gradient(darkred, black);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  font-family: 'Merriweather', serif;
+  font-weight: bold;
+  font-size: 13px;
+  line-height: 1.4;
+}
+main {
+  text-align: center;
+  width: 800px;
+  margin: 0 auto;
+}
+p {
+  text-align: left;
+}
+a {
+  color: inherit; 
+}
+button {
+  text-align: left;
 }
