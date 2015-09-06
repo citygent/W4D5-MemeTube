@@ -33,7 +33,7 @@ end
 #CREATE - post, route to create vid on database, redirects to show
 post '/videos' do
   sql = "INSERT INTO videos(title, description, url, date_added, views) VALUES ('#{params['title']}','#{params['description']}','#{params['url']}','NOW','0') returning *"
-  video = @db.exec(sql).first['id']
+  video = @db.exec(sql).first
   redirect to "/videos/#{video['id']}"
 end
 

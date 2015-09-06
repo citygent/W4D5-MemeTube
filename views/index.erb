@@ -1,5 +1,5 @@
 <% @videos.each do |video| %>
-  <h4><%= video['title']%></h4>
+  <h4><a href="/videos/<%= video['id'] %>"><%= video['title']%></a></h4>
   <iframe id="player" type="text/html" width="640" height="390" src="https://www.youtube.com/embed/<%= video['url'] %>" frameborder="0"></iframe>
   <p>Added: <%= video['date_added'] %></p>
   <p>Views: <%= video['views'] %></p>
